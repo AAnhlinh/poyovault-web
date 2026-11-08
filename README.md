@@ -2,7 +2,7 @@
 
 A premium personal-finance workspace that connects a customer's whole financial life — checking, savings, credit cards, student loans, auto loans and a mortgage — and explains what to do next.
 
-PoyoVault is a working, interactive prototype, not a static mockup. Every number is derived from the displayed account and transaction data. There is no random-number generation in any financial calculation.
+PoyoVault is a working, interactive prototype. Every number is derived from the displayed account and transaction data. There is no random-number generation in any financial calculation.
 
 ![PoyoVault](https://img.shields.io/badge/next.js-15-black) ![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue) ![Supabase](https://img.shields.io/badge/Supabase-auth%20%2B%20Postgres-3ECF8E) ![Tailwind](https://img.shields.io/badge/Tailwind-3.4-38BDF8)
 
