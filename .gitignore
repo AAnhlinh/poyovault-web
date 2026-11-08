@@ -31,3 +31,6 @@ yarn-error.log*
 .freebuff/
 .finsight-server.log
 *.log
+/freebuff-sites-build/
+/.open-next/
+/.wrangler/
