@@ -1,0 +1,445 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --sidebar-width: 236px;
+    /* Tailwind v4 color tokens used by the ripple background. */
+    --color-neutral-100: #e5e7eb;
+    --color-neutral-300: #d4d4d8;
+    --color-neutral-500: #71717a;
+    --color-neutral-700: #2c2748;
+    --color-neutral-800: #1a1730;
+    --color-neutral-900: #0c0e1b;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ink-950 text-white antialiased;
+    background-image:
+      linear-gradient(180deg, rgba(124, 58, 237, 0.055) 0%, transparent 460px),
+      radial-gradient(65% 35% at 100% 0%, rgba(56, 189, 248, 0.028) 0%, transparent 65%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(167, 139, 250, 0.35);
+    color: #fff;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+  }
+
+  input,
+  select,
+  textarea {
+    color-scheme: dark;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-lg border border-white/[0.085] bg-ink-900/50 shadow-none;
+  }
+
+  .surface-strong {
+    @apply rounded-lg border border-white/[0.1] bg-ink-900/80 shadow-none;
+  }
+
+  .surface-inset {
+    @apply rounded-md border border-white/[0.06] bg-black/20;
+  }
+
+  .label {
+    @apply text-[9px] font-semibold uppercase tracking-[0.14em] text-white/35;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .field {
+    @apply w-full rounded-md border border-white/10 bg-ink-900/60 px-3.5 py-2.5 text-sm text-white placeholder:text-white/30 transition focus:border-violet-400/60 focus:outline-none focus:ring-2 focus:ring-violet-500/20;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-xs font-medium text-white/60;
+  }
+
+  .hairline {
+    @apply border-t border-white/[0.06];
+  }
+
+  .scroll-fade {
+    mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent;
+  }
+
+  .brand-gradient {
+    background-image: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  }
+
+  .balance-gradient {
+    background-image: linear-gradient(135deg, rgba(124, 58, 237, 0.55) 0%, rgba(56, 189, 248, 0.22) 55%, rgba(8, 11, 28, 0.2) 100%);
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
+    background-size: 26px 26px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* The ripple component relies on an animation utility that is not emitted
+   reliably by this project's Tailwind v3 pipeline. Keep the animation here. */
+.animate-cell-ripple {
+  animation: cell-ripple var(--duration, 200ms) ease-out var(--delay, 0ms);
+}
+
+@keyframes cell-ripple {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Sci-fi layer                                                        */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .hud-grid {
+    background-image:
+      linear-gradient(rgba(148, 163, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 255, 0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    background-position: center;
+  }
+
+  .hud-corners {
+    position: relative;
+  }
+
+  .hud-corners::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.65;
+    background-image:
+      linear-gradient(rgba(196, 181, 253, 0.55), rgba(196, 181, 253, 0.55)),
+      linear-gradient(rgba(196, 181, 253, 0.55), rgba(196, 181, 253, 0.55)),
+      linear-gradient(rgba(103, 232, 249, 0.4), rgba(103, 232, 249, 0.4)),
+      linear-gradient(rgba(103, 232, 249, 0.4), rgba(103, 232, 249, 0.4)),
+      linear-gradient(rgba(196, 181, 253, 0.55), rgba(196, 181, 253, 0.55)),
+      linear-gradient(rgba(196, 181, 253, 0.55), rgba(196, 181, 253, 0.55)),
+      linear-gradient(rgba(103, 232, 249, 0.4), rgba(103, 232, 249, 0.4)),
+      linear-gradient(rgba(103, 232, 249, 0.4), rgba(103, 232, 249, 0.4));
+    background-repeat: no-repeat;
+    background-size:
+      13px 1px,
+      1px 13px,
+      13px 1px,
+      1px 13px,
+      13px 1px,
+      1px 13px,
+      13px 1px,
+      1px 13px;
+    background-position:
+      0 0,
+      0 0,
+      100% 0,
+      100% 0,
+      0 100%,
+      0 100%,
+      100% 100%,
+      100% 100%;
+  }
+
+  .hud-bracket {
+    position: relative;
+  }
+
+  .hud-bracket::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image:
+      linear-gradient(rgba(196, 181, 253, 0.6), rgba(196, 181, 253, 0.6)),
+      linear-gradient(rgba(196, 181, 253, 0.6), rgba(196, 181, 253, 0.6)),
+      linear-gradient(rgba(103, 232, 249, 0.45), rgba(103, 232, 249, 0.45)),
+      linear-gradient(rgba(103, 232, 249, 0.45), rgba(103, 232, 249, 0.45));
+    background-repeat: no-repeat;
+    background-size: 9px 1px, 1px 9px, 9px 1px, 1px 9px;
+    background-position: 0 0, 0 0, 100% 100%, 100% 100%;
+  }
+
+  .scanlines {
+    position: relative;
+  }
+
+  .scanlines::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+    opacity: 0.45;
+  }
+
+  .scan-beam {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -35%;
+    height: 8rem;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(167, 139, 250, 0.1),
+      rgba(103, 232, 249, 0.07),
+      transparent
+    );
+    animation: beam-sweep 11s linear infinite;
+  }
+
+  .ambient-scan {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 18vh;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(139, 92, 246, 0.04) 55%,
+      rgba(56, 189, 248, 0.06) 85%,
+      transparent
+    );
+    animation: ambient-sweep 26s linear infinite;
+  }
+
+  .poyo-glow {
+    filter: drop-shadow(0 0 5px rgba(167, 139, 250, 0.28));
+  }
+
+  .poyo-float {
+    animation: poyo-float 5s ease-in-out infinite;
+  }
+
+  .poyo-eye {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: poyo-blink 5.2s ease-in-out infinite;
+  }
+
+  .poyo-pop {
+    animation: poyo-pop 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .rank-orbit::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 9999px;
+    pointer-events: none;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(196, 181, 253, 0.55) 55deg,
+      transparent 120deg,
+      rgba(103, 232, 249, 0.4) 190deg,
+      transparent 265deg,
+      rgba(244, 114, 182, 0.3) 320deg,
+      transparent 360deg
+    );
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1.5px));
+    animation: ring-spin 20s linear infinite;
+  }
+
+  .xp-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .xp-shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    animation: shimmer-sweep 4s ease-in-out infinite;
+  }
+
+  .neon-text {
+    text-shadow:
+      0 0 22px rgba(167, 139, 250, 0.35),
+      0 0 64px rgba(56, 189, 248, 0.18);
+  }
+
+  .terminal-dot {
+    animation: dot-blink 2.6s steps(1, end) infinite;
+  }
+}
+
+@keyframes beam-sweep {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(460%);
+  }
+}
+
+@keyframes ambient-sweep {
+  0% {
+    transform: translateY(-20vh);
+  }
+  100% {
+    transform: translateY(105vh);
+  }
+}
+
+@keyframes poyo-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  35% {
+    transform: translateY(-4px) rotate(-1.2deg);
+  }
+  70% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+@keyframes poyo-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.86) translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes poyo-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95%,
+  97% {
+    transform: scaleY(0.08);
+  }
+}
+
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  55%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes dot-blink {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  61%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .ambient-scan,
+  .scan-beam {
+    display: none;
+  }
+}
